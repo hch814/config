@@ -1,0 +1,7 @@
+[user]
+	name = hch
+	email = 617320696@qq.com
+
+[core]
+    pager = less -IFRX
+	excludesfile = gitignore_global
