@@ -1,23 +1,22 @@
 #!/bin/bash
 
 function main() {
-    CONFIG_DIR="$HOME/.config"
-    REPO_DIR=`get_repo_dir`
+    REPO_DIR=`dirname $0`
+    REPO_DIR=`cd $REPO_DIR && pwd`
+    CONFIG_DIR=${XDG_CACHE_HOME:-$HOME/.config}
     echo "######################## VARS ########################"
     echo "# CONFIG_DIR: $CONFIG_DIR"
     echo "# REPO_DIR: $REPO_DIR"
     echo "######################## VARS ########################"
 
     check_or_create_dir $CONFIG_DIR
-    setup_git_config $CONFIG_DIR $REPO_DIR
-    setup_zsh_config $CONFIG_DIR $REPO_DIR
+    setup_git_config 
+    setup_zsh_config 
 
 }
 
 # todo test
 setup_zsh_config(){
-    CONFIG_DIR=$1
-    REPO_DIR=$2
     if [ ! -d $REPO_DIR/zsh/ohmyzsh/custom ]; then
         cd $REPO_DIR
         git submodule init
@@ -34,10 +33,20 @@ setup_zsh_config(){
     ln -s ../../../zsh-syntax-highlighting .
 
     cd $CONFIG_DIR
-    ln -s $REPO_DIR/zsh/ $CONFIG_DIR/zsh
+    [[ -L $CONFIG_DIR/zsh || -d $CONFIG_DIR/zsh ]] && trash_and_log $CONFIG_DIR/zsh
+    ln -s $REPO_DIR/zsh $CONFIG_DIR/zsh
 
     [ -f $HOME/.zshrc ] && trash_and_log $HOME/.zshrc
-    echo 'source $HOME/.config/zsh/zshrc' > $HOME/.zshrc
+    echo '${XDG_CACHE_HOME:-$HOME/.config}/zsh/zshrc' > $HOME/.zshrc
+    color green
+    cat << EOF
+######################## ZSH ########################
+# zsh配置以完成，配置入口：
+# `echo $CONFIG_DIR/zsh/zshrc`
+`command_exists zsh || echo #注意：未检测到zsh，请安装`
+######################## ZSH ########################
+EOF
+    color none
 }
 
 # todo
@@ -46,8 +55,6 @@ setup_git_config(){
 }
 
 setup_git_config(){
-    CONFIG_DIR=$1
-    REPO_DIR=$2
     REPO_DIR_TRASH="$REPO_DIR/trash"
     if [ -f $HOME/.gitconfig ]; then
         trash_and_log $HOME/.gitconfig
@@ -56,17 +63,19 @@ setup_git_config(){
     ln -s $REPO_DIR/git $CONFIG_DIR/git
     git config --global user.name `whoami`
     color green
-    echo "######################## GIT ########################"
-    echo "# git配置以完成："
-    echo "`git config -l --global`"
-    echo "# 你可以根据需要修改用户名或邮箱："
-    echo "# git config --global [user.email | user.name] <info>"
-    echo "######################## GIT ########################"
+    cat << EOF
+######################## GIT ########################
+# git配置以完成：
+`git config -l --global`
+# 你可以根据需要修改用户名或邮箱：
+# git config --global [user.email | user.name] <info>
+######################## GIT ########################
+EOF
     color none
 }
 
 check_or_create_dir() {
-    DIR=$1
+    local DIR=$1
     if [ -d $DIR ]; then
         echo "$DIR detected"
         else
@@ -75,18 +84,18 @@ check_or_create_dir() {
     fi
 } 
 
-get_repo_dir(){
-    REPO_DIR=`dirname $0`
-    REPO_DIR=`cd $REPO_DIR && pwd`
-    echo $REPO_DIR
+command_exists(){
+    local cmd=$1
+    which $cmd > /dev/null 2>&1
+    return $?
 }
 
 trash_and_log(){
-    TRASH_BIN="`get_repo_dir`/trash"
+    local TRASH_BIN="$REPO_DIR/trash"
     check_or_create_dir $TRASH_BIN
-    LOG_FILE="$TRASH_BIN/README.txt"
-    TRASH_FILE=$1
-    TO="$TRASH_BIN/`basename $TRASH_FILE`"
+    local LOG_FILE="$TRASH_BIN/README.txt"
+    local TRASH_FILE=$1
+    local TO="$TRASH_BIN/`basename $TRASH_FILE`"
     
     if [ ! -f $LOG_FILE ]; then
         msg="@@为了使配置生效，将影响配置的原有文件放入此回收桶(trash目录)中，你可以根据该回收日志(README.txt)对这些文件进行进一步处理，例如清除或回滚@@"
