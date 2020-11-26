@@ -6,13 +6,16 @@ export XDG_DATA_HOME=$HOME/.data
 [ ! -d $XDG_CACHE_HOME ] && mkdir $XDG_CACHE_HOME
 [ ! -d $XDG_DATA_HOME ] && mkdir $XDG_DATA_HOME
 
+# config
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 [ ! -d $ZDOTDIR ] && mkdir $ZDOTDIR
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 
+# data
 export HISTFILE="$XDG_DATA_HOME"/zsh/zsh_history
+export _Z_DATA="$XDG_DATA_HOME"/zsh/z_jump
 [ ! -d "$XDG_DATA_HOME"/zsh ] && mkdir "$XDG_DATA_HOME"/zsh
 export LESSHISTFILE="$XDG_DATA_HOME"/lesshst
 export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history

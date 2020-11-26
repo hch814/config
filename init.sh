@@ -3,7 +3,7 @@
 function main() {
     REPO_DIR=`dirname $0`
     REPO_DIR=`cd $REPO_DIR && pwd`
-    CONFIG_DIR=${XDG_CACHE_HOME:-$HOME/.config}
+    CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}
     echo "######################## VARS ########################"
     echo "# CONFIG_DIR: $CONFIG_DIR"
     echo "# REPO_DIR: $REPO_DIR"

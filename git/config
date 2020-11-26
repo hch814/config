@@ -3,5 +3,5 @@
 	email = 617320696@qq.com
 
 [core]
-    pager = less -IFRX
-	excludesfile = gitignore_global
+	pager = less -IFRX
+	excludesfile = ~/.config/git/gitignore_global
