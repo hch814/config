@@ -1,2 +1,6 @@
 trash
 .zcompdump*
+trash_history
+__pycache__
+*.pyo
+*.pyc
