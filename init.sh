@@ -12,10 +12,9 @@ function main() {
     check_or_create_dir $CONFIG_DIR
     setup_git_config 
     setup_zsh_config 
-
+    setup_ranger_config
 }
 
-# todo test
 setup_zsh_config(){
     if [ ! -d $REPO_DIR/zsh/ohmyzsh/custom ]; then
         cd $REPO_DIR
@@ -43,15 +42,31 @@ setup_zsh_config(){
 ######################## ZSH ########################
 # zsh配置以完成，配置入口：
 # `echo $CONFIG_DIR/zsh/zshrc`
-`command_exists zsh || echo #注意：未检测到zsh，请安装`
+`command_exists zsh || echo # 注意：未检测到zsh，请安装`
 ######################## ZSH ########################
 EOF
     color none
 }
 
-# todo
-setup_git_config(){
-    return
+# todo test
+setup_ranger_config(){
+    if [[ ! -e $CONFIG_DIR/ranger/plugins/ranger_devicons/.git ]]; then
+        cd $REPO_DIR
+        git submodule init
+        git submodule update
+    fi  
+
+    cd $CONFIG_DIR
+    [[ -L $CONFIG_DIR/ranger || -e $CONFIG_DIR/ranger ]] && trash_and_log $CONFIG_DIR/ranger
+    ln -s $REPO_DIR/ranger $REPO_DIR/ranger
+    cat << EOF
+######################## RANGER ########################
+# ranger配置以完成，配置目录：
+# `echo $CONFIG_DIR/ranger`
+`command_exists ranger || echo # 注意：未检测到ranger，请安装`
+######################## RANGER ########################
+EOF
+    color none
 }
 
 setup_git_config(){
