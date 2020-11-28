@@ -36,7 +36,7 @@ setup_zsh_config(){
     ln -s $REPO_DIR/zsh $CONFIG_DIR/zsh
 
     [ -f $HOME/.zshrc ] && trash_and_log $HOME/.zshrc
-    echo '${XDG_CACHE_HOME:-$HOME/.config}/zsh/zshrc' > $HOME/.zshrc
+    echo 'source ${XDG_CACHE_HOME:-$HOME/.config}/zsh/zshrc' > $HOME/.zshrc
     color green
     cat << EOF
 ######################## ZSH ########################

@@ -1,3 +1,6 @@
+# zsh配置加载顺序：
+# https://wangxiz.site/blog/posts/zsh-startup-and-shotdown-files/#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F
+
 DIR=`dirname $0`
 source $DIR/env.zsh
 
