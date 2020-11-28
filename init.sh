@@ -42,7 +42,7 @@ setup_zsh_config(){
 ######################## ZSH ########################
 # zsh配置以完成，配置入口：
 # `echo $CONFIG_DIR/zsh/zshrc`
-`command_exists zsh || echo # 注意：未检测到zsh，请安装`
+`command_exists zsh || echo "# 注意：未检测到zsh，请安装"`
 ######################## ZSH ########################
 EOF
     color none
@@ -58,12 +58,13 @@ setup_ranger_config(){
 
     cd $CONFIG_DIR
     [[ -L $CONFIG_DIR/ranger || -e $CONFIG_DIR/ranger ]] && trash_and_log $CONFIG_DIR/ranger
-    ln -s $REPO_DIR/ranger $REPO_DIR/ranger
+    ln -s $REPO_DIR/ranger $CONFIG_DIR/ranger
+    color green
     cat << EOF
 ######################## RANGER ########################
 # ranger配置以完成，配置目录：
 # `echo $CONFIG_DIR/ranger`
-`command_exists ranger || echo # 注意：未检测到ranger，请安装`
+`command_exists ranger || echo "# 注意：未检测到ranger，请安装"`
 ######################## RANGER ########################
 EOF
     color none
