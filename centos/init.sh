@@ -8,7 +8,7 @@ sudo yum install -y rsync
 sudo yum install -y net-tools
 sudo yum install -y wget
 sudo yum install -y curl
-yum -y install zip unzip
+sudo yum install -y zip unzip
 
 # java
 sudo yum install -y maven
