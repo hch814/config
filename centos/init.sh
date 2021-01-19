@@ -6,6 +6,9 @@ sudo yum install -y git
 sudo yum install -y gcc
 sudo yum install -y rsync
 sudo yum install -y net-tools
+sudo yum install -y wget
+sudo yum install -y curl
+yum -y install zip unzip
 
 # java
 sudo yum install -y maven
