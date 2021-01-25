@@ -33,4 +33,4 @@ export MONGODB_HOME='/usr/local/opt/mongodb-macos-x86_64-4.4.1'
 export ES_HOME='/usr/local/opt/elasticsearch-7.9.3'
 export KIBANA_HOME='/usr/local/opt/kibana-7.9.3-darwin-x86_64'
 export PATH=".:$PATH:$MONGODB_HOME/bin:$FLINK_HOME/bin:$KAFKA_HOME/bin:$ES_HOME/bin:$KIBANA_HOME/bin"
-export PATH="$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin"
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

@@ -11,7 +11,7 @@ class z(Command):
     def execute(self):
 
         # location of .z file
-        z_loc = getenv("HOME")+"/.z"
+        z_loc = getenv("XDG_DATA_HOME")+"/zsh/z_jump"
         with open(z_loc,"r") as fobj:
             flists = fobj.readlines()
 

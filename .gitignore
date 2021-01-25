@@ -4,3 +4,4 @@ trash_history
 __pycache__
 *.pyo
 *.pyc
+.zsh_history
