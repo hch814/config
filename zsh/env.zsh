@@ -24,14 +24,26 @@ export REDISCLI_HISTFILE="$XDG_DATA_HOME"/rediscli_history
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 
 # PATH
-export PYSPARK_PYTHON="python3"
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home'
+export M2_HOME='/usr/local/opt/apache-maven-3.6.3'
 export FLINK_HOME="/usr/local/opt/flink-1.10.1"
 export KAFKA_HOME="/usr/local/opt/kafka_2.12-2.6.0"
 # export SPARK_HOME="/usr/local/opt/spark-2.4.7-bin-hadoop2.7"
+export PYSPARK_PYTHON="python3"
 export MONGODB_HOME='/usr/local/opt/mongodb-macos-x86_64-4.4.1'
 export ES_HOME='/usr/local/opt/elasticsearch-7.9.3'
 export KIBANA_HOME='/usr/local/opt/kibana-7.9.3-darwin-x86_64'
-export M2_HOME='/usr/local/opt/apache-maven-3.6.3'
-export PATH=".:$PATH:$MONGODB_HOME/bin:$FLINK_HOME/bin:$KAFKA_HOME/bin:$ES_HOME/bin:$KIBANA_HOME/bin:$M2_HOME/bin"
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+for i in `env | grep -i _home | awk -F '=' '{print $2}'`;do
+    if [[ -d "$i/bin" ]]; then
+        export PATH="$PATH:$i/bin"
+    fi
+done
+# export PATH=".:$PATH:$MONGODB_HOME/bin:$FLINK_HOME/bin:$KAFKA_HOME/bin:$ES_HOME/bin:$KIBANA_HOME/bin:$M2_HOME/bin"
+export PATH=".:$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+
+# HomeBrew
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+# HomeBrew END
