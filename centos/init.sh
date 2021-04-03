@@ -9,6 +9,13 @@ sudo yum install -y net-tools
 sudo yum install -y wget
 sudo yum install -y curl
 sudo yum install -y zip unzip
+sudo yum install -y avahi
+sudo yum install -y sysstat
+
+
+# firewall
+sudo firewall-cmd --add-port=80/tcp --add-port=8080/tcp --add-port=8000/tcp --add-port=5353/udp --permanent
+
 
 # java
 sudo yum install -y maven
