@@ -33,6 +33,9 @@ export PYSPARK_PYTHON="python3"
 export MONGODB_HOME='/usr/local/opt/mongodb-macos-x86_64-4.4.1'
 export ES_HOME='/usr/local/opt/elasticsearch-7.9.3'
 export KIBANA_HOME='/usr/local/opt/kibana-7.9.3-darwin-x86_64'
+export REDIS_HOME='/usr/local/opt/redis-5.0.11'
+export INFLUXDB_HOME='/usr/local/opt/influxdb-1.8.4-1/usr'
+export GREMLIN_HOME='/usr/local/opt/apache-tinkerpop-gremlin-console-3.4.10'
 for i in `env | grep -i _home | awk -F '=' '{print $2}'`;do
     if [[ -d "$i/bin" ]]; then
         export PATH="$PATH:$i/bin"

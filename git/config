@@ -5,3 +5,4 @@
 [core]
 	pager = less -IFRX
 	excludesfile = ~/.config/git/gitignore_global
+	quotepath = false
