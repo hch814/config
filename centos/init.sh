@@ -13,7 +13,7 @@ modify_hostname(){
 # 基础软件
 install_basic_software(){
     read -p "install basic software? y/n(o) " ibs
-    if [[ -z $ibs || "n" == $ibs || "no" == $iåbs ]]; then
+    if [[ -z $ibs || "n" == $ibs || "no" == $ibs ]]; then
         echo "skip install_basic_software..."
     return
     fi
