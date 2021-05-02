@@ -70,6 +70,7 @@ EOF
     sysctl --system
 
     # 安装docker
+    yum install -y yum-utils
     yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
     yum install -y docker-ce-19.03.8-3.el7
     systemctl start docker && systemctl enable docker
