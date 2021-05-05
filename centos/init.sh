@@ -28,8 +28,13 @@ install_basic_software(){
     yum install -y zip unzip
     yum install -y sysstat
     yum install -y avahi
-    curl -O https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/n/nss-mdns-0.14.1-9.el7.x86_64.rpm
+    mkdir -p /usr/local/opt && cd /usr/local/opt
+    wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/n/nss-mdns-0.14.1-9.el7.x86_64.rpm
     yum install -y ./nss-mdns-0.14.1-9.el7.x86_64.rpm
+    rm ./nss-mdns-0.14.1-9.el7.x86_64.rpm
+    wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+    tar -xzvf frp_0.36.2_linux_amd64.tar.gz
+    rm ./frp_0.36.2_linux_amd64.tar.gz
 
     # network & firewall
     firewall-cmd --add-port=80/tcp --add-port=8080/tcp --add-port=8000/tcp --add-port=5353/udp --permanent
